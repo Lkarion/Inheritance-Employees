@@ -18,7 +18,6 @@ public class Manager extends Employee{
     public void addEmployeeToTeam(Employee employee){
         Employee[] arr = new Employee[team==null ? 1 : team.length+1];
 
-        if (arr.length > 1)
         for (int i = 0; i < arr.length-1; i++) {
             arr[i] = team[i];
         }
