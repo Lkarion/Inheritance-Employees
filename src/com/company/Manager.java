@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Manager extends Employee{
     private double bonus;
-    private Employee[] team = new Employee[0];
+    private Employee[] team;
 
     // private List<Employee> team1 = new LinkedList<>();
 
@@ -16,14 +16,14 @@ public class Manager extends Employee{
     }
 
     public void addEmployeeToTeam(Employee employee){
-        Employee[] arr = new Employee[team.length+1];
-        for (int i = 0; i < team.length; i++) {
+        Employee[] arr = new Employee[team==null ? 1 : team.length];
+
+        if (arr.length > 1)
+        for (int i = 0; i < arr.length; i++) {
             arr[i] = team[i];
         }
-        arr[arr.length-1] = employee;
-
+        arr[arr.length - 1] = employee;
         team = arr;
-
         System.out.println(Arrays.toString(team));
     }
 
