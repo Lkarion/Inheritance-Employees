@@ -7,6 +7,7 @@ public class Programmer extends Employee {
         super(name,salary);
     }
 
+    @Override
     public void doWork() {
         System.out.println("I am programmer " + getName() + " I write program");
     }

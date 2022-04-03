@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         Programmer p1=new Programmer("Ivan",1000);
-        Programmer p2=new Programmer("Nick",1500);
+        Programmer p2=new Programmer("Mike",1500);
         QAEngineer q1=new QAEngineer("Lena",1200);
         QAEngineer q2=new QAEngineer("Max",1100);
 
@@ -14,11 +14,13 @@ public class Main {
             employee[i].doWork();
         }
 
-        Manager m1 = new Manager("Karl", 4253,1000);
-        m1.addEmployeeToTeam(p1);
-        m1.addEmployeeToTeam(p2);
+        EmployeeTeam team1 = new EmployeeTeam(new Manager("Karl", 4253,1000));
+        team1.addEmployeeToTeam(p1);
+        team1.addEmployeeToTeam(p2);
+        team1.addEmployeeToTeam(p2);
       //  m1.addEmployeeToTeam1(p1);
       //  m1.addEmployeeToTeam1(p2);
+        team1.removeEmployeeFromTeam(1);
 
 
 

@@ -9,4 +9,9 @@ public class Intern extends Employee{
     public String toString() {
         return "Intern "+getName()+" salary " + getSalary();
     }
+
+    @Override
+    public void doWork() {
+
+    }
 }
