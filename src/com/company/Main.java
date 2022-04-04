@@ -22,6 +22,7 @@ public class Main {
       //  m1.addEmployeeToTeam1(p2);
         team1.removeEmployeeFromTeam(1);
 
+        System.out.println(team1.findEmployee(p1));
 
 
     }

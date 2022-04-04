@@ -12,10 +12,22 @@ public class EmployeeTeam {
         this.manager = manager;
     }
 
+
     public EmployeeTeam(Manager manager, Employee[] team) {
         this.manager = manager;
         this.team = team;
     }
+
+    //TODO реализовать метод find(Employee employee), который возвращает индекс этого сотрудника в массиве
+    public int findEmployee(Employee employee){
+        for (int i = 0; i < team.length; i++) {
+            if (team[i].hashCode() == employee.hashCode())
+                if (team[i].equals(employee))
+                    return i;
+        }
+        return -1;
+    }
+
 
     public void addEmployeeToTeam(Employee employee){
         if (team == null){

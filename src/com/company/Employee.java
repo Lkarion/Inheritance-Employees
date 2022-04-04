@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Objects;
+
 public abstract class Employee {
     private String name;
     private double salary;
@@ -31,4 +33,16 @@ public abstract class Employee {
 
     public abstract void doWork();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Double.compare(employee.salary, salary) == 0 && name.equals(employee.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, salary);
+    }
 }
