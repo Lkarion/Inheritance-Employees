@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -18,11 +20,24 @@ public class Main {
         team1.addEmployeeToTeam(p1);
         team1.addEmployeeToTeam(p2);
         team1.addEmployeeToTeam(p2);
-      //  m1.addEmployeeToTeam1(p1);
+        System.out.println("--------------------------");
+        System.out.println(Arrays.toString(team1.getSubTeam("Mike")));
+        team1.addEmployeeToTeam(q2);
+        team1.addEmployeeToTeam(new Manager("Karl", 25500,250));
+        System.out.println(Arrays.toString(team1.getSubTeamProgrammersQAs()));
+        System.out.println("----------------------------");
+
+        //  m1.addEmployeeToTeam1(p1);
       //  m1.addEmployeeToTeam1(p2);
         team1.removeEmployeeFromTeam(1);
 
-        System.out.println(team1.findEmployee(p1));
+        System.out.println(team1.findEmployee(q2));
+        System.out.println(team1.size());
+        team1.trimToSize();
+        System.out.println(team1);
+        team1.removeEmployeeFromTeam("Mike");
+        System.out.println(team1);
+        System.out.println("size = " + team1.size());
 
 
     }

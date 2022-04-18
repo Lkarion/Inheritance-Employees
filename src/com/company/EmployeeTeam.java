@@ -1,6 +1,9 @@
 package com.company;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class EmployeeTeam {
     private Manager manager;
@@ -18,11 +21,93 @@ public class EmployeeTeam {
         this.team = team;
     }
 
-    //TODO реализовать метод find(Employee employee), который возвращает индекс этого сотрудника в массиве
+    //1. The int size() method that returns how many Employees in the team
+    public int size(){
+        return currentIndex;
+    }
+
+    //2. The Employee get(int index) method that return the Employee with the given index
+    public Employee get(int index){
+        if (index > currentIndex || index < 0) {
+            throw new NoSuchElementException("there is no such index in TEAM");
+        }
+        return team[index];
+    }
+
+    //3. The remove (String name) method that remove Employees by the name
+    public void removeEmployeeFromTeam (String name){
+        if (team != null && name.length()>0)
+            for (int i = 0; i < currentIndex; i++) {
+                if (team[i].getName().equalsIgnoreCase(name)) {
+                    removeEmployeeFromTeam(i);
+                    return; // предполагается, что в массиве нет повторяющихся сотрудников
+                }
+            }
+    }
+
+    //4. Removal of several employees from the team at once (removeAll) It should be possible to use an array of
+    // Employee or EmployeeTeam to set the list of removed workers
+    public void removeAll(Employee[] arr){
+        for (Employee e: arr) {
+            if (e!=null){
+                int index = findEmployee(e);
+                if (index != -1){
+                    removeEmployeeFromTeam(index);
+                }
+            }
+        }
+    }
+
+    //5. Adding several employees to a team at a time (addAll). As previous It should be possible to set the list
+    // by array or by EmployeeTeam
+    public void addAll(Employee[] arr){
+        for (Employee e: arr) {
+            if (findEmployee(e) == -1) // if there was no such employee in team yet
+                addEmployeeToTeam(e);
+        }
+    }
+
+    //6. Since our EmployeeTeam allows null cells at the end of the array, it could takes up extra memory.
+    // Implement the trimToSize() method that trims the capacity of the array to be the real current size.
+    public void trimToSize(){
+        if (capacity > currentIndex){
+            capacity = currentIndex;
+            team = Arrays.copyOf(team, capacity);
+        }
+    }
+
+    //7. The method that returns the new EmployeeTeam with all employees with the given name from this team
+    public Employee[] getSubTeam(String name){
+        Employee[] subTeam = new Employee[1];
+        int subTeamCurrentIndex = 0;
+        for (Employee e: team) {
+            if (e != null && e.getName().equalsIgnoreCase(name)){
+                subTeam = Arrays.copyOf(subTeam, subTeamCurrentIndex+1);;
+                subTeam[subTeamCurrentIndex++] = e;
+            }
+        }
+        return subTeam;
+    }
+
+    //8. Implement the method that returns the EmployeeTeam with all programmers or all QA Engineers from this team
+    public Employee[] getSubTeamProgrammersQAs(){
+        Employee[] subTeam = new Employee[1];
+        int subTeamCurrentIndex = 0;
+        for (Employee e: team) {
+            if (e != null && (e instanceof Programmer || e instanceof QAEngineer)){
+                subTeam = Arrays.copyOf(subTeam, subTeamCurrentIndex+1);;
+                subTeam[subTeamCurrentIndex++] = e;
+            }
+        }
+        return subTeam;
+    }
+
     public int findEmployee(Employee employee){
-        for (int i = 0; i < team.length; i++) {
-            if (team[i].hashCode() == employee.hashCode())
-                if (team[i].equals(employee))
+        if (employee != null)
+        for (int i = 0; i < currentIndex; i++) {
+            if (team[i] != null &&
+                    team[i].hashCode() == employee.hashCode() &&
+                    team[i].equals(employee))
                     return i;
         }
         return -1;
@@ -47,9 +132,11 @@ public class EmployeeTeam {
             System.out.println("there is no such index in TEAM");
             return;
         }
-        // if element order in teamArray does not matter:
+       // if element order in teamArray does not matter:
         // team[index] = null;
         // if element order in teamArray DOES matter:
+       // team = ArrayUtils.remove(team,index);
+       // System.arraycopy(team, index+1, team, index, team.length-index-1);
         Employee[] temp = Arrays.copyOfRange(team, index+1, team.length);
         for (int i = 0; i < temp.length; i++) {
             team[index+i] = temp[i];
@@ -59,9 +146,16 @@ public class EmployeeTeam {
         /* team = (Employee[]) Stream.concat(Arrays.stream(Arrays.copyOfRange(team, 0, index)),
                 Arrays.stream(Arrays.copyOfRange(team,index+1, team.length)))
                 .toArray();*/
-
         System.out.println(Arrays.toString(team));
     }
+
+    public void removeEmployeeFromTeam(Employee employee){
+        int index = findEmployee(employee);
+        if (index != -1){
+            removeEmployeeFromTeam(index);
+        }
+    }
+
 
     @Override
     public String toString() {
