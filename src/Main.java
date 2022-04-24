@@ -1,4 +1,9 @@
-package com.company;
+import employee.programmer.Programmer;
+import employee.programmer.QAEngineer;
+import employee.Employee;
+import employee.EmployeeTeam;
+import employee.Intern;
+import employee.Manager;
 
 import java.util.Arrays;
 
@@ -7,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
         Programmer p1=new Programmer("Ivan",1000);
         Programmer p2=new Programmer("Mike",1500);
+
         QAEngineer q1=new QAEngineer("Lena",1200);
         QAEngineer q2=new QAEngineer("Max",1100);
 
@@ -21,7 +27,7 @@ public class Main {
         team1.addEmployeeToTeam(p2);
         team1.addEmployeeToTeam(p2);
         System.out.println("--------------------------");
-        System.out.println(Arrays.toString(team1.getSubTeam("Mike")));
+       // System.out.println(Arrays.toString(team1.getSubTeam("Mike")));
         team1.addEmployeeToTeam(q2);
         team1.addEmployeeToTeam(new Manager("Karl", 25500,250));
         System.out.println(Arrays.toString(team1.getSubTeamProgrammersQAs()));
