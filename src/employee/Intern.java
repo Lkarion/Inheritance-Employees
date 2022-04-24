@@ -1,6 +1,8 @@
-package com.company;
+package employee;
 
-public class Intern extends Employee{
+import employee.Employee;
+
+public class Intern extends Employee {
     public Intern(String name, double salary) {
         super(name, salary);
     }

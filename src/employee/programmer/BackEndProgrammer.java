@@ -1,6 +1,8 @@
-package com.company;
+package employee.programmer;
 
-public class BackEndProgrammer extends Programmer{
+import employee.programmer.Programmer;
+
+public class BackEndProgrammer extends Programmer {
     public BackEndProgrammer(String name, double salary) {
         super(name, salary);
     }

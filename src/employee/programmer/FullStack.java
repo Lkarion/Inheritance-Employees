@@ -1,6 +1,8 @@
-package com.company;
+package employee.programmer;
 
-public class FullStack extends Programmer{
+import employee.programmer.Programmer;
+
+public class FullStack extends Programmer {
     public FullStack(String name, double salary) {
         super(name, salary);
     }

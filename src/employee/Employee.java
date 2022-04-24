@@ -1,14 +1,28 @@
-package com.company;
+package employee;
 
+import java.util.List;
 import java.util.Objects;
 
 public abstract class Employee {
     private String name;
     private double salary;
+    private List<Task> tasks;
 
     public Employee(String name, double salary) {
         this.name = name;
         this.salary = salary;
+    }
+
+    public Employee(String name, double salary, List<Task> tasks) {
+        this.name = name;
+        this.salary = salary;
+        this.tasks = tasks;
+    }
+
+    public Employee(String name, double salary, Task task) {
+        this.name = name;
+        this.salary = salary;
+        this.tasks.add(task);
     }
 
     public String getName() {
@@ -33,6 +47,7 @@ public abstract class Employee {
 
     public abstract void doWork();
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,4 +60,8 @@ public abstract class Employee {
     public int hashCode() {
         return Objects.hash(name, salary);
     }
+
+    //6. In the Employee you need to implement new feature assign a Task(id, status, description) to each Employee.
+    // Think how you can implement it. NOTE each employee can solve more than one task, and each task can be solved
+    // by more than one employee.
 }

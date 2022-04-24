@@ -1,12 +1,15 @@
-package com.company;
+package employee.programmer;
 
-public class QAEngineer extends Employee{
+import employee.Employee;
+
+public class QAEngineer extends Employee {
 
 
     public QAEngineer(String name, double salary) {
         super(name,salary);
     }
 
+    @Override
     public  void doWork(){
         System.out.println("I am QA Engineer " + getName()+ " I check the program");
     }

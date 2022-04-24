@@ -1,8 +1,8 @@
-package com.company;
+package employee;
 
-import java.util.Objects;
+import employee.Employee;
 
-public class Manager extends Employee{
+public class Manager extends Employee {
     private double bonus;
 
     public Manager(String name, double salary, double bonus) {

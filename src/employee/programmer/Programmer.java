@@ -1,4 +1,6 @@
-package com.company;
+package employee.programmer;
+
+import employee.Employee;
 
 public class Programmer extends Employee {
 
