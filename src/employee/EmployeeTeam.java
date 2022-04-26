@@ -81,8 +81,8 @@ public class EmployeeTeam {
     //5. Adding several employees to a team at a time (addAll). As previous It should be possible to set the list
     // by array or by EmployeeTeam
     public boolean addAll(Employee[] arr) {
-        int size = size();
         if (arr == null) return false;
+        int size = size();
         int newCapacity = currentIndex + arr.length + 10;
         if (newCapacity < capacity) {
             increaseToSize(newCapacity);

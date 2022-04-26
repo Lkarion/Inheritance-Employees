@@ -6,6 +6,9 @@ import java.util.Objects;
 public abstract class Employee {
     private String name;
     private double salary;
+    //6. In the Employee you need to implement new feature assign a Task(id, status, description) to each Employee.
+    // Think how you can implement it. NOTE each employee can solve more than one task, and each task can be solved
+    // by more than one employee.
     private List<Task> tasks;
 
     public Employee(String name, double salary) {
@@ -60,8 +63,4 @@ public abstract class Employee {
     public int hashCode() {
         return Objects.hash(name, salary);
     }
-
-    //6. In the Employee you need to implement new feature assign a Task(id, status, description) to each Employee.
-    // Think how you can implement it. NOTE each employee can solve more than one task, and each task can be solved
-    // by more than one employee.
 }

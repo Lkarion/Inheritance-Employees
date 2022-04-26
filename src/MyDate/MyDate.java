@@ -42,7 +42,7 @@ public class MyDate {
     //4. In MyDate class Implement method int dayBetween(MyDate,MyDate) that returns how many days between
     // the two given MyDates
 
-    public int dayBetween(MyDate myDate1, MyDate myDate2){
+    public static int dayBetween(MyDate myDate1, MyDate myDate2){
         return (int) ChronoUnit.DAYS.between(LocalDate.parse(myDate1.toString()),LocalDate.parse(myDate2.toString()));
     }
 
@@ -60,5 +60,78 @@ public class MyDate {
         this.month = Integer.parseInt(strings[1]);
         this.day = Integer.parseInt(strings[2]);
 
+    }
+
+
+
+
+
+
+    // days between ручками
+    public static int getDaysBetween(MyDate date1, MyDate date2){
+        if (date1.year == date2.year)
+            if (date1.month == date2.month)
+                return Math.abs(date1.day - date2.day);
+            else return Math.abs(countDaysInCurrentYear(date1) - countDaysInCurrentYear(date2));
+
+
+        int maxYear, minYear, daysRestInYear,
+                daysInLaterDate, sumDays = 0;
+
+        if (date1.year > date2.year){
+            daysInLaterDate = countDaysInCurrentYear(date1);
+            maxYear = date1.year;
+            minYear = date2.year;
+            daysRestInYear = getDaysBetween(date2,new MyDate(31,12, minYear));
+        }else{
+            daysInLaterDate = countDaysInCurrentYear(date2);
+            maxYear = date2.year;
+            minYear = date1.year;
+            daysRestInYear = getDaysBetween(date1,new MyDate(31,12, minYear));
+        }
+
+
+        for (int i = minYear+1; i < maxYear; i++) {
+            sumDays += countDaysInCurrentYear(new MyDate(31,12, i));
+        }
+        return daysRestInYear + sumDays + daysInLaterDate;
+    }
+
+    public static int countDaysInCurrentYear(MyDate myDate){
+        if (myDate.month == 12 && myDate.day == 31)
+            return checkVisokosniyGod(myDate.year) ? 366 : 365;
+
+        int sumDays = 0;
+        for (int i = 1; i < myDate.month; i++) {
+            sumDays += getDaysInMonth(i, myDate.year);
+        }
+        sumDays += myDate.day;
+        return sumDays;
+    }
+
+    public static int getDaysInMonth(int mon, int year){
+        if ((mon >= 1 && mon <= 12)) {
+            switch (mon) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    return 31;
+                case 2: return checkVisokosniyGod(year) ? 29 : 28;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    return 30;
+            }
+        }
+        return -1;
+    }
+
+    public static boolean checkVisokosniyGod(int god){
+        return ((god%4==0)&&(god%100 != 0)) || (god % 400 == 0);
     }
 }
