@@ -1,3 +1,4 @@
+import MyDate.MyDate;
 import employee.programmer.Programmer;
 import employee.programmer.QAEngineer;
 import employee.Employee;
@@ -10,6 +11,15 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
+        MyDate date = new MyDate("25-04-2022");
+        System.out.println(date.compareTo(new MyDate("25-03-2021")));
+        MyDate[] dates = new MyDate[]{
+                new MyDate(21,2,2021),
+                new MyDate(12,2,2020),
+                new MyDate(01,01,1988)};
+        MyDate.sortMyDate(dates);
+        System.out.println(Arrays.toString(dates));
+
         Programmer p1=new Programmer("Ivan",1000);
         Programmer p2=new Programmer("Mike",1500);
 

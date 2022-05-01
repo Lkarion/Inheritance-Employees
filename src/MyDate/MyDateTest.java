@@ -2,6 +2,8 @@ package MyDate;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyDateTest {
@@ -45,4 +47,43 @@ class MyDateTest {
         MyDate date2 =new MyDate(30,4,2020);
         assertEquals(1280, MyDate.getDaysBetween(date1, date2));
     }
+
+
+
+    // test sort MyDate array
+    @Test
+    void test_sortMyDate_EmptyArray(){
+        MyDate[] dates = new MyDate[]{};
+        MyDate[] datesExpected = new MyDate[]{};
+        MyDate.sortMyDate(dates);
+        assertEquals(Arrays.toString(datesExpected),Arrays.toString(dates));
+    }
+    @Test
+    void test_sortMyDate_NormalArray(){
+        MyDate[] dates = new MyDate[]{
+                new MyDate(21,2,2021),
+                new MyDate(12,2,2020),
+                new MyDate(01,01,1988)};
+        MyDate[] datesExpected = new MyDate[]{
+                new MyDate(01,01,1988),
+                new MyDate(12,2,2020),
+                new MyDate(21,2,2021)};
+        MyDate.sortMyDate(dates);
+        assertEquals(Arrays.toString(datesExpected),Arrays.toString(dates));
+    }
+    @Test
+    void test_sortMyDate_One_Date(){
+        MyDate[] dates = new MyDate[]{new MyDate(01,01,1988)};
+        MyDate[] datesExpected = new MyDate[]{new MyDate(01,01,1988)};
+        MyDate.sortMyDate(dates);
+        assertEquals(Arrays.toString(datesExpected),Arrays.toString(dates));
+    }
+    @Test
+    void test_sortMyDate_Same_Dates(){
+        MyDate[] dates = new MyDate[]{new MyDate(01,01,1988),new MyDate(01,01,1988)};
+        MyDate[] datesExpected = new MyDate[]{new MyDate(01,01,1988),new MyDate(01,01,1988)};
+        MyDate.sortMyDate(dates);
+        assertEquals(Arrays.toString(datesExpected),Arrays.toString(dates));
+    }
+
 }

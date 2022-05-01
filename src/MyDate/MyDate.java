@@ -27,11 +27,7 @@ public class MyDate {
 
     //2. In MyDate class Implement method compareTo(MyDate) that compare the given MyDate with this MyDate
     public int compareTo(MyDate myDate){
-        return this.year != myDate.year ?
-                this.year - myDate.year
-                : this.month != myDate.month ?
-                    this.month - myDate.month
-                    : this.day - myDate.day;
+        return (this.year - myDate.year)* 365 + (this.month - myDate.month)*30 + (this.day - myDate.day);
     }
 
     //3. In MyDate class Implement method int dayBetween(MyDate) that returns how many days between given MyDate
@@ -48,7 +44,7 @@ public class MyDate {
 
     @Override
     public String toString() {
-        return year + "-" + month + "-" + day + "-";
+        return year + "-" + month + "-" + day;
     }
 
     //5. Read about Integer.parseInt(String) method and implement the constructor MyDate(String s)
@@ -56,9 +52,9 @@ public class MyDate {
 
     public MyDate(String s) {
         String[] strings = s.split("-");
-        this.year = Integer.parseInt(strings[0]);
+        this.day = Integer.parseInt(strings[0]);
         this.month = Integer.parseInt(strings[1]);
-        this.day = Integer.parseInt(strings[2]);
+        this.year = Integer.parseInt(strings[2]);
 
     }
 
@@ -133,5 +129,26 @@ public class MyDate {
 
     public static boolean checkVisokosniyGod(int god){
         return ((god%4==0)&&(god%100 != 0)) || (god % 400 == 0);
+    }
+
+    //Using any algorithm of sorting you know and the method compareTo you wrote in class MyDate implement method
+    // of sorting an array of MyDates
+    public static void sortMyDate(MyDate[] array){
+        for (int i = 0; i < array.length-1; i++) {
+            MyDate temp = array[findMinIndex(array,i)];
+            array[findMinIndex(array,i)] = array[i];
+            array[i] = temp;
+        }
+    }
+    public static int findMinIndex(MyDate[] array, int indexNotSorted){
+        int minIndex = indexNotSorted;
+        MyDate min = array[indexNotSorted];
+        for (int i = indexNotSorted; i < array.length; i++) {
+            if (min.compareTo(array[i]) > 0){
+                min = array[i];
+                minIndex = i;
+            }
+        }
+        return minIndex;
     }
 }
