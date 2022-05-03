@@ -3,13 +3,9 @@ package employee;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Employee {
+public abstract class Employee implements Comparable<Employee>{
     private String name;
     private double salary;
-    //6. In the Employee you need to implement new feature assign a Task(id, status, description) to each Employee.
-    // Think how you can implement it. NOTE each employee can solve more than one task, and each task can be solved
-    // by more than one employee.
-    private List<Task> tasks;
 
     public Employee(String name, double salary) {
         this.name = name;
@@ -19,13 +15,11 @@ public abstract class Employee {
     public Employee(String name, double salary, List<Task> tasks) {
         this.name = name;
         this.salary = salary;
-        this.tasks = tasks;
     }
 
     public Employee(String name, double salary, Task task) {
         this.name = name;
         this.salary = salary;
-        this.tasks.add(task);
     }
 
     public String getName() {
@@ -62,5 +56,19 @@ public abstract class Employee {
     @Override
     public int hashCode() {
         return Objects.hash(name, salary);
+    }
+
+
+    @Override
+    public int compareTo(Employee employee) {
+        return this.getName().compareTo(employee.getName());
+    }
+
+    //6. In the Employee you need to implement new feature assign a Task(id, status, description) to each Employee.
+    // Think how you can implement it. NOTE each employee can solve more than one task, and each task can be solved
+    // by more than one employee.
+
+    void assignTask(Task task){
+        new BindingClassTaskEmployee(task,this);
     }
 }

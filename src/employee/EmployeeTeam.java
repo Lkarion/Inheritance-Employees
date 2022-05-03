@@ -6,7 +6,7 @@ import employee.programmer.QAEngineer;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-public class EmployeeTeam {
+public class EmployeeTeam{
     private Manager manager;
     private Employee[] team;
     private int capacity = 2;
@@ -26,6 +26,7 @@ public class EmployeeTeam {
     public EmployeeTeam(Manager manager, Employee[] team) {
         this.manager = manager;
         this.team = team;
+        currentIndex = team.length;
     }
 
     //1. The int size() method that returns how many Employees in the team
@@ -202,4 +203,12 @@ public class EmployeeTeam {
                 "team=" + Arrays.toString(team) +
                 '}';
     }
+
+    //Add to the EmployeeTeam the ability to sort employees by name. Use the Comparable and Arrays.sort
+   public void sortTeam(){
+        trimToSize();
+        Arrays.sort(team);
+   }
+
+
 }

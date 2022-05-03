@@ -5,12 +5,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 class EmployeeTeamTest {
     EmployeeTeam team;
 
     @BeforeEach
     public void init(){
-        this.team= new EmployeeTeam();
     }
 
     @Test
@@ -43,6 +44,30 @@ class EmployeeTeamTest {
     void testAddAll_True() {
         Employee[] arr = {new Programmer("Luke",1500), new Programmer("Mike",1000)};
         Assertions.assertTrue(team.addAll(arr));
+    }
+    @Test
+    void test_sortTeam_Normal() {
+        this.team = new EmployeeTeam(new Manager("Karl", 4253,1000),
+                new Employee[]{new Programmer("Mike",1000), new Programmer("Luke",1500)});
+        team.sortTeam();
+        Employee[] arrExpected = {new Programmer("Luke",1500), new Programmer("Mike",1000)};
+        Assertions.assertEquals(Arrays.toString(arrExpected), Arrays.toString(team.getTeam()));
+    }
+    @Test
+    void test_sortTeam_Empty() {
+        this.team = new EmployeeTeam(new Manager("Karl", 4253,1000),
+                new Employee[]{});
+        team.sortTeam();
+        Employee[] arrExpected = {};
+        Assertions.assertEquals(Arrays.toString(arrExpected), Arrays.toString(team.getTeam()));
+    }
+    @Test
+    void test_sortTeam_Same() {
+        this.team = new EmployeeTeam(new Manager("Karl", 4253,1000),
+                new Employee[]{new Programmer("Mike",1000), new Programmer("Mike",1000)});
+        team.sortTeam();
+        Employee[] arrExpected = {new Programmer("Mike",1000), new Programmer("Mike",1000)};
+        Assertions.assertEquals(Arrays.toString(arrExpected), Arrays.toString(team.getTeam()));
     }
 
 }

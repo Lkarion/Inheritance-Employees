@@ -51,6 +51,7 @@ public class MyDate {
     // which allows to create MyDate from string like “2022-10-21”
 
     public MyDate(String s) {
+        //TODO делать проверку на корректность строки. есть ли вообще 3 элемента в массиве потом? месяц <=12?
         String[] strings = s.split("-");
         this.day = Integer.parseInt(strings[0]);
         this.month = Integer.parseInt(strings[1]);
@@ -78,7 +79,8 @@ public class MyDate {
             daysInLaterDate = countDaysInCurrentYear(date1);
             maxYear = date1.year;
             minYear = date2.year;
-            daysRestInYear = getDaysBetween(date2,new MyDate(31,12, minYear));
+            daysRestInYear = getDaysBetween(date2,new MyDate(31,12, minYear));//TODO убрать использование обектов, чтобы они тут не плодились
+       //TODO возможно, оверлодить метод countDaysInCurrentYear, чтобы обойтись без использования объектов
         }else{
             daysInLaterDate = countDaysInCurrentYear(date2);
             maxYear = date2.year;
