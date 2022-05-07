@@ -4,9 +4,12 @@ import employee.programmer.Programmer;
 import employee.programmer.QAEngineer;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 public class EmployeeTeam{
+    //3. The remove (String name) method that remove Employees by the name
+
     private Manager manager;
     private Employee[] team;
     private int capacity = 2;
@@ -41,8 +44,6 @@ public class EmployeeTeam{
         }
         return team[index];
     }
-
-    //3. The remove (String name) method that remove Employees by the name
     public void removeEmployeeFromTeam(String name) {
         if (team != null && name.length() > 0)
             for (int i = 0; i < currentIndex; i++) {
